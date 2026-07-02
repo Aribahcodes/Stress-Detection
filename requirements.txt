@@ -1,0 +1,53 @@
+# ============================================================
+# Dual-Branch Stress Detection — requirements.txt
+# ============================================================
+# Install with: pip install -r requirements.txt
+#
+# IMPORTANT: Use Python 3.10+ and activate your conda env first:
+#   conda activate stress_detect
+#
+# NOTE: TensorFlow is pinned to <2.16 to stay on Keras 2.
+# TF 2.16+ ships with standalone Keras 3 which restructured
+# internals and cannot load models saved with tf.keras (Keras 2).
+# ============================================================
+
+# ── Deep Learning ────────────────────────────────────────────
+tensorflow>=2.13.0,<2.16.0  # Keras 2 bundled — required for model compatibility
+# tensorflow-gpu is merged into tensorflow since TF 2.13;
+# GPU support is automatic if CUDA/cuDNN are installed.
+# If you need the separate package (older setups):
+# tensorflow-gpu>=2.13.0,<2.16.0
+
+# ── Computer Vision & MediaPipe ──────────────────────────────
+opencv-python>=4.8.0        # Webcam capture + Haar cascade face detection
+mediapipe>=0.10.0           # Physio branch: 478 face landmarks + iris
+
+# ── Data Science ─────────────────────────────────────────────
+numpy>=1.24.0,<2.0.0        # TF 2.13-2.15 requires NumPy 1.x
+Pillow>=10.0.0               # Image loading (PIL)
+scikit-learn>=1.3.0          # Confusion matrix, classification report
+pandas>=2.0.0                # Session history DataFrame (Streamlit tab)
+matplotlib>=3.7.0            # Training curves, sample image plots
+seaborn>=0.12.0              # Confusion matrix heatmap
+
+# ── Web App ──────────────────────────────────────────────────
+streamlit>=1.28.0            # app/streamlit_app.py web interface
+streamlit-webrtc>=0.47.0     # Live webcam video stream in browser
+aiortc>=1.6.0                # WebRTC backend for streamlit-webrtc
+
+# ── Desktop GUI ───────────────────────────────────────────────
+# tkinter is built-in to Python -- no install needed
+# Pillow + matplotlib are already listed above (required by gui.py)
+# Run: python app/gui.py
+
+# ── Notebook Support ─────────────────────────────────────────
+jupyter>=1.0.0                # Run .ipynb notebooks
+notebook>=7.0.0               # Jupyter notebook server
+ipykernel>=6.25.0              # Python kernel for Jupyter
+
+# ── Utilities ────────────────────────────────────────────────
+tqdm>=4.65.0                  # Progress bars (optional, used in training)
+requests>=2.31.0              # HTTP requests (Streamlit dependency)
+
+# ── EXE Packaging (optional) ─────────────────────────────────
+# pyinstaller>=5.13.0       # Uncomment to build .exe (see README.md)
